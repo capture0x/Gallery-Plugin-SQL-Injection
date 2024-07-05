@@ -50,4 +50,23 @@ back-end DBMS: MySQL >= 5.0.12 (MariaDB fork)
 
 <img alt="Result" src="https://raw.githubusercontent.com/capture0x/Gallery-Plugin-SQL-Injection/main/10.png">
 
+# Vulnerable Code:
+	public static function tsvg_get_galleries( $tsvg_per_page = 10, $tsvg_page_number = 1 ) {
+		global $wpdb;
+		$tsvg_get_result = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT `id`,`TS_VG_Title`,`TS_VG_Option`,`TS_VG_Sort`,`created_at` FROM %1$s %2$s %3$s ORDER BY %4$s %5$s LIMIT %6$d OFFSET %7$d',
+				esc_sql( $wpdb->prefix . 'ts_galleryv_manager' ),
+				isset( $_REQUEST['s'] ) && ! empty( sanitize_text_field( $_REQUEST['s'] ) ) ? "WHERE TS_VG_Title like " : " ",
+				isset( $_REQUEST['s'] ) && ! empty( sanitize_text_field( $_REQUEST['s'] ) ) ? '%' . $wpdb->esc_like( $_REQUEST['s'] ) . '%' : " ",
+				isset( $_REQUEST['orderby'] ) && ! empty( sanitize_text_field( $_REQUEST['orderby'] ) ) ? sanitize_text_field( $_REQUEST['orderby'] ) : "id",
+				isset( $_REQUEST['order'] ) && ! empty( sanitize_text_field($_REQUEST['order']) ) ? ' ' . sanitize_text_field( $_REQUEST['order'] ) : "ASC",
+				(int) $tsvg_per_page,
+				(int) ( $tsvg_page_number - 1 ) * $tsvg_per_page,
+			),
+			ARRAY_A
+		);
+		return $tsvg_get_result;
+	}
+
 
