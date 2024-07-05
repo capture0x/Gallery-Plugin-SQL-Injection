@@ -11,7 +11,12 @@
 
 2. After saving, go back to TS Video Gallery and click the title: https://localhost/wordpress/wp-admin/admin.php?page=tsvg-admin&orderby=TS_VG_Title&order=asc
 
-3. Search for the `orderby` parameter.
+3. WordPress database error: [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\\\' desc LIMIT 15 OFFSET 0' at line 1]
+SELECT `id`,`TS_VG_Title`,`TS_VG_Option`,`TS_VG_Sort`,`created_at` FROM wp_ts_galleryv_manager ORDER BY TS_VG_Title\\\' desc LIMIT 15 OFFSET 0
+
+<img alt="Result" src="https://raw.githubusercontent.com/capture0x/Gallery-Plugin-SQL-Injection/main/9.png">
+
+5. Search for the `orderby` parameter.
 
 ### SQLMAP COMMAND
 
